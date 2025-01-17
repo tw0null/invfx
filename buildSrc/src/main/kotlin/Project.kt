@@ -9,9 +9,6 @@ val Project.projectApi
 val Project.projectCore
     get() = subproject("core")
 
-val Project.projectDongle
-    get() = findProject(":${rootProject.name}-dongle")
-
 val Project.projectPlugin
     get() = subproject("plugin")
 

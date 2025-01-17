@@ -67,12 +67,21 @@ publishing {
                         roles.addAll("developer")
                         timezone.set("Asia/Seoul")
                     }
+
+                    developer {
+                        id.set("icetang0123")
+                        name.set("Icetang0123")
+                        email.set("1415wwwh@gmail.com")
+                        url.set("https://github.com/gooddltmdqls")
+                        roles.addAll("developer")
+                        timezone.set("Asia/Seoul")
+                    }
                 }
 
                 scm {
-                    connection.set("scm:git:git://github.com/monun/${rootProject.name}.git")
-                    developerConnection.set("scm:git:ssh://github.com:monun/${rootProject.name}.git")
-                    url.set("https://github.com/monun/${rootProject.name}")
+                    connection.set("scm:git:git://github.com/gooddltmdqls/${rootProject.name}.git")
+                    developerConnection.set("scm:git:ssh://github.com:gooddltmdqls/${rootProject.name}.git")
+                    url.set("https://github.com/gooddltmdqls/${rootProject.name}")
                 }
             }
         }
