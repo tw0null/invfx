@@ -29,7 +29,7 @@ repositories {
 
 ```kotlin
 dependencies {
-    implementation("xyz.icetang.lib:invfx-api:<version>")
+    implementation("io.github.imleooh:invfx-api:<version>")
 }
 ```
 
@@ -40,5 +40,5 @@ name: ...
 version: ...
 main: ...
 libraries:
-  - xyz.icetang.lib:invfx-core:<version>
+  - io.github.imleooh:invfx-core:<version>
 ```
