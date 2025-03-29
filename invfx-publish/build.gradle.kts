@@ -1,53 +1,35 @@
+import com.vanniktech.maven.publish.SonatypeHost
+
 plugins {
+    id("com.vanniktech.maven.publish") version "0.28.0"
     `maven-publish`
     signing
 }
-
-projectPlugin.tasks.named("clipJar") {
-    dependsOn(tasks.named("publishApiPublicationToServerRepository"))
-    dependsOn(tasks.named("publishCorePublicationToServerRepository"))
-}
-
 publishing {
-    repositories {
-        mavenLocal()
-
-        maven {
-            name = "server"
-            url = rootProject.uri(".server/libraries")
-        }
-
-        maven {
-            name = "central"
-
-            credentials.runCatching {
-                val nexusUsername: String by project
-                val nexusPassword: String by project
-                username = nexusUsername
-                password = nexusPassword
-            }.onFailure {
-                logger.warn("Failed to load nexus credentials, Check the gradle.properties")
-            }
-
-            url = uri(
-                if ("SNAPSHOT" in version as String) {
-                    "https://s01.oss.sonatype.org/content/repositories/snapshots/"
-                } else {
-                    "https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/"
-                }
-            )
-        }
-    }
-
     publications {
         fun MavenPublication.setup(target: Project) {
             artifactId = target.name
             from(target.components["java"])
             artifact(target.tasks["sourcesJar"])
             artifact(target.tasks["dokkaJar"])
+        }
 
-            pom {
-                name.set(target.name)
+        create<MavenPublication>("api") {
+            setup(projectApi)
+        }
+
+        create<MavenPublication>("core") {
+            setup(projectCore)
+            artifact(coreReobfJar)
+        }
+    }
+}
+
+mavenPublishing {
+    publishToMavenCentral(SonatypeHost.CENTRAL_PORTAL)
+    signAllPublications()
+    pom {
+                name.set("invfx")
                 description.set("Kotlin DSL for PaperMC Inventory GUI")
                 url.set("https://github.com/monun/${rootProject.name}")
 
@@ -76,28 +58,30 @@ publishing {
                         roles.addAll("developer")
                         timezone.set("Asia/Seoul")
                     }
+
+                    developer {
+                        id.set("imleooh")
+                        name.set("ImLeooh")
+                        email.set("devleooh@gmail.com")
+                        url.set("https://github.com/imleooh")
+                        roles.addAll("developer")
+                        timezone.set("Asia/Seoul")
+                    }
                 }
 
                 scm {
-                    connection.set("scm:git:git://github.com/gooddltmdqls/${rootProject.name}.git")
-                    developerConnection.set("scm:git:ssh://github.com:gooddltmdqls/${rootProject.name}.git")
-                    url.set("https://github.com/gooddltmdqls/${rootProject.name}")
+                    connection.set("scm:git:git://github.com/imleooh/${rootProject.name}.git")
+                    developerConnection.set("scm:git:ssh://github.com:imleooh/${rootProject.name}.git")
+                    url.set("https://github.com/imleooh/${rootProject.name}")
                 }
             }
-        }
 
-        create<MavenPublication>("api") {
-            setup(projectApi)
-        }
-
-        create<MavenPublication>("core") {
-            setup(projectCore)
-            artifact(coreReobfJar)
-        }
-    }
 }
+
+
 
 signing {
     isRequired = true
     sign(publishing.publications["api"], publishing.publications["core"])
 }
+
