@@ -60,19 +60,19 @@ mavenPublishing {
                     }
 
                     developer {
-                        id.set("imleooh")
-                        name.set("ImLeooh")
+                        id.set("zeettn")
+                        name.set("Zeettn")
                         email.set("devleooh@gmail.com")
-                        url.set("https://github.com/imleooh")
+                        url.set("https://github.com/zeettn")
                         roles.addAll("developer")
                         timezone.set("Asia/Seoul")
                     }
                 }
 
                 scm {
-                    connection.set("scm:git:git://github.com/imleooh/${rootProject.name}.git")
-                    developerConnection.set("scm:git:ssh://github.com:imleooh/${rootProject.name}.git")
-                    url.set("https://github.com/imleooh/${rootProject.name}")
+                    connection.set("scm:git:git://github.com/zeettn/${rootProject.name}.git")
+                    developerConnection.set("scm:git:ssh://github.com:zeettn/${rootProject.name}.git")
+                    url.set("https://github.com/zeettn/${rootProject.name}")
                 }
             }
 
