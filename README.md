@@ -30,8 +30,7 @@ repositories {
 
 ```kotlin
 dependencies {
-    implementation("io.github.imleooh:invfx-api:<version>")
-    implementation("io.github.imleooh:invfx-api:<version>")
+    implementation("io.github.zeettn:invfx-api:<version>")
 }
 ```
 
@@ -42,6 +41,5 @@ name: ...
 version: ...
 main: ...
 libraries:
-  - io.github.imleooh:invfx-core:<version>
-  - io.github.imleooh:invfx-core:<version>
+  - io.github.zeettn:invfx-core:<version>
 ```
